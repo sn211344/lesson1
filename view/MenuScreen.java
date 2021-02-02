@@ -15,6 +15,7 @@ public class MenuScreen {
 
 	public MenuScreen(JFrame window) {
 		this.window = window;
+		window.setTitle("Menu Screen");
 	}
 
 	public void init() {
@@ -29,13 +30,21 @@ public class MenuScreen {
 		panel.add(piggybankButton);
 		cp.add(BorderLayout.CENTER, panel);
 
-		calcButton.addActionListener( e -> 
-			System.out.println("Calc button is pressed")
-		);
+		calcButton.addActionListener( e -> {
+			window.getContentPane().removeAll();
+			var calc = new CalculatorSimulator(window);
+			calc.init();
+			window.pack();
+			window.revalidate();
+		});
 
-		piggybankButton.addActionListener( e -> 
-			System.out.println("Piggybank button is pressed")
-		);
+		piggybankButton.addActionListener( e -> {
+			window.getContentPane().removeAll();
+			var piggybank = new PiggBankSimulator(window);
+			piggybank.init();
+			window.pack();
+			window.revalidate();
+		});
 
 	}
 	
